@@ -302,9 +302,3 @@ function get_ip()
     }
     return $user_ip;
 }
-
-function dd($s)
-{
-    print_r($s);
-    exit;
-}

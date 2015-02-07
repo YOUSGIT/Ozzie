@@ -63,7 +63,6 @@ class DB
 
     function qry($sql)
     {
-        //echo $sql;
         if (trim($sql) != '')
         {
 
@@ -79,12 +78,10 @@ class DB
 
     function num_row()
     {
-
         if (!$this->result)
             return false;
         else
         {
-
             if (!$ret = mysql_num_rows($this->result))
                 return false;
             else
@@ -110,7 +107,6 @@ class DB
     {
         $this->ret_list = array();
 
-
         if (trim($sql) != '')
         {
 
@@ -122,7 +118,6 @@ class DB
             return false;
         else
         {
-
             if ($num != 1)
             {
 
@@ -155,7 +150,6 @@ class DB
             return false;
         else
         {
-
             while ($ret = mysql_fetch_row($result))
                 array_push($this->ret_list, $ret[0]);
 
@@ -165,7 +159,6 @@ class DB
 
     public function __call($name, $arguments)
     {
-
         echo "Calling object method '$name' "
         . implode(', ', $arguments) . "\n";
     }

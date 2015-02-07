@@ -5,7 +5,7 @@
 # HTTP="true"
 // header("Content-Type:text/html; charset=utf-8");
 ob_start();
-ini_set('display_errors', '1');
+ini_set('display_errors', '0');
 session_start();
 // error_reporting(E_ALL ^ E_NOTICE);
 // debug mode
@@ -31,12 +31,12 @@ define('CONSUL', CASENAME . '_consultation');
 define('CATPRODUCT', CASENAME . '_catalog_product');
 define('CATPRESS', CASENAME . '_catalog_press');
 define('PRODUCT', CASENAME . '_product');
-define('PRESS', CASENAME . '_press');
+define('NEWS', CASENAME . '_news');
 define('PHOTO', CASENAME . '_photo');
-define('BANNER', CASENAME . '_banner');
+define('EVENTS', CASENAME . '_events');
 
 // deploy folder
-$root_f = '/dev';
+$root_f = '/dev/';
 
 $inPage = pathinfo($_SERVER["PHP_SELF"]);
 
@@ -47,12 +47,12 @@ define('this_Page', $inPage["basename"]);
 define('_ROOT', $_SERVER['DOCUMENT_ROOT'] . $root_f);
 
 // 圖片存放位置
-define('UPLOAD_Image', $root . 'img/files/');
-define('TEMP_Image', $root . 'img/user_images/temp/');
+define('UPLOAD_Image', $root . 'images/photo/');
+define('TEMP_Image', $root . 'images/user_images/temp/');
 define('FILES_down', $root . 'download/');
 define('INC_CLASS', _ROOT . 'inc/class/');
 define('INC_ADMIN', _ROOT . 'admin/inc/');
-define('IMAGES', $root . 'img/');
+define('IMAGES', $root . 'images/');
 define('WEB', 'http://ozzie-art.com' . $root_f);
 
 // configuration folder
@@ -76,11 +76,11 @@ $_db = new DB;
 // check login
 if (!is_object(unserialize($_SESSION['loginObj'])))
 {
-    Site::checkLogin();
+    // Site::checkLogin();
 }
 else
 {
-    unserialize($_SESSION['loginObj'])->checkLogin();
+    // unserialize($_SESSION['loginObj'])->checkLogin();
 }
 
 $_POST = TrimArray($_POST);

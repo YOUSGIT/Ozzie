@@ -64,7 +64,6 @@ class Superobj extends DB
       return $this->tbname;
       }
      */
-
     function set_field($tbname, $tb_list = "", $field_list = "")
     {
         if (/* !$this->is_table($tbname, $tb_list) || */ trim($tbname) == '')
@@ -166,7 +165,6 @@ class Superobj extends DB
 
                 if (isset($v['name']) && !empty($v['tmp_name']))
                 {
-
                     $oFile = $v['tmp_name'];
                     $sFileName = $v['name'];
                     $sExtension = Extension($sFileName);
@@ -217,27 +215,26 @@ class Superobj extends DB
             $field_count = count($this->field);
             $field = null;
             $insert_value = null;
-            $j = 1;
+            $data = array();
+
             // default action is insert
             // $mode = "i";
-
             foreach ($this->field as $k => $v)
             {
-
                 $is_time = 0;
                 $is_number = 0;
 
-                //預設文字類型給予引號
+                // add quote if type is string
                 $d = '"';
 
-                /* skip the unset field */
+                // skip the unset field
                 if ($mode == 'u')
                     if (!isset($post_arr[$k]))
                         continue;
 
-                //數值類型不給予引號
                 foreach ($this->_number as $v)
                 {
+                    // no quote if type is number
                     if (substr_count($this->field[$k]['Type'], $v) > 0)
                     {
                         $d = '';
@@ -245,10 +242,9 @@ class Superobj extends DB
                         break;
                     }
                 }
-
-                //時間類型給予引號且標記
                 foreach ($this->_date as $v)
                 {
+                    // add quote if type is date/time
                     if (substr_count($this->field[$k]['Type'], $v) > 0)
                     {
                         $d = '"';
@@ -275,12 +271,13 @@ class Superobj extends DB
                         $post_arr[$k] = 'null'; // set PK value
                     else
                     {
+                        $PK_value = $d . $this->quote($post_arr[$k]) . $d;
+
                         /* the primary key value is not null, change to update mode
                          * and it isn't forced to change mode */
                         if ($MODE != 'i')
                         {
                             $mode = "u";
-                            $PK_value = $d . $this->quote($post_arr[$k]) . $d;
                             continue;
                         }
                     }
@@ -289,45 +286,52 @@ class Superobj extends DB
                 /* bind fields and values to a variable */
                 if (true)
                 {
-                    $field.="`" . $k . "`";
-                    if ($mode != 'u')
-                    {
-                        // insert
-                        #echo $k.'='.$post_arr[$k].'<br>';
-                        $insert_value.=(trim($post_arr[$k]) != '') ? $d . $this->quote($post_arr[$k]) . $d : $d . $d;
-                        #echo $insert_value.'<br>';
-                    }
-                    else
-                    {
-                        // update
-                        $field.=" = ";
-                        $field.=$d . $this->quote($post_arr[$k]) . $d;
-                    }
-
-                    if ($j < $field_count)
-                    {
-                        $field.=",";
-                        $insert_value.=",";
-                    }
+                    $data[$k] = $d . $this->quote($post_arr[$k]) . $d;
                 }
+            }
 
+            $insert_value = $field = '';
+
+            $j = 1;
+
+            foreach ($data as $k => $v)
+            {
+                $field.="`" . $k . "`";
+                if ($mode != 'u')
+                {
+                    // insert
+                    $insert_value.=trim($data[$k]);
+                }
+                else
+                {
+                    // update
+                    $field.=" = ";
+                    $field.=trim($data[$k]);
+                }
+                if ($j < $field_count)
+                {
+                    $field.=", ";
+                    $insert_value.=", ";
+                }
                 $j++;
             }
-        }
 
-        if ($mode != 'u')
-        {
-            $sql = 'REPLACE INTO ' . $this->tbname . ' (' . $field . ')VALUES(' . $insert_value . ')';
-        }
-        else
-        {
-            $field.="`" . $this->PK . "` = " . $PK_value;
-            $sql = "UPDATE " . $this->tbname . " SET " . $field . " WHERE `" . $this->PK . "` =" . $PK_value;
-        }
+            if ($mode != 'u')
+            {
+                $sql = 'REPLACE INTO ' . $this->tbname . ' (' . $field . ')VALUES(' . $insert_value . ')';
+            }
+            else
+            {
+                $field.="`" . $this->PK . "` = " . $PK_value;
+                $sql = "UPDATE " . $this->tbname . " SET " . $field . " WHERE `" . $this->PK . "` =" . $PK_value;
+            }
 
-        if (!$this->qry($sql))
-        {
-            $this->alert = '更新失敗';
+            $this->alert = "更新完成";
+
+            if (!$this->qry($sql))
+            {
+                $this->alert = "更新失敗";
+            }
         }
 
         return $this->alert;

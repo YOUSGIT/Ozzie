@@ -17,9 +17,14 @@ if ($FUNC)
             $func = new Product;
             break;
 
-        case "Press":
+        case "Events":
 
-            $func = new Press;
+            $func = new Events;
+            break;
+
+        case "News":
+
+            $func = new News;
             break;
 
         case "Consul":

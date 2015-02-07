@@ -1,6 +1,6 @@
 <?php
 
-class Photo extends Superobj
+class News extends Superobj implements Press
 {
 
     protected $post_arr = array();
@@ -8,15 +8,18 @@ class Photo extends Superobj
     protected $del_arr;
     protected $limit = 2;
     protected $sort_where = "";
-    protected $tbname = PHOTO;
-    protected $tbname2 = PRODUCT;
+    protected $tbname = NEWS;
+    protected $tbname_photo = PHOTO;
+    public $back = './news.php';
     public $is_image = false;
     public $list_this;
     public $detail_this;
     public $this_Page = this_Page;
     public $detail_id;
-    public $is_sort = true;
+    public $is_sort = false;
     public $sort_arr = array();
+    public $status_arr = array(1 => "上架", 0 => "下架");
+    public $default_bg = 'pattern1.jpg';
     public $sdir = UPLOAD_Image;
 
     ####################################################################################
@@ -72,11 +75,13 @@ class Photo extends Superobj
     }
 
     #################################################################################################
-    function get_all($target = 0, $parent = 0)
+    function get_all()
     {
-        $wheres = " AND a.`parent` = " . $parent;
+        // if (is_numeric($_GET['s']) && $_GET['s'] != '')
+        // $wheres = " AND `status` = " . $_GET['s'];
 
-        $this->list_this = "SELECT a.* FROM " . $this->tbname . " a WHERE 1 AND a.`target` = " . $target . $wheres . " ORDER BY a.`sequ` ASC, a.`dates` DESC";
+        $this->list_this = "SELECT a.* FROM " . $this->tbname . " a ORDER BY a.`dates` DESC";
+        // $this->list_this = "SELECT a.* FROM ".$this->tbname." a LEFT JOIN `" . $this->tbname_photo . "` b ON a.`id` = b.`parent` AND b.`target` = 1 WHERE 1 GROUP BY a.`id`";
         return parent::get_list($this->list_this);
     }
 
@@ -102,20 +107,34 @@ class Photo extends Superobj
     }
 
     #############################################################################
-    function get_all_front($target = 0, $parent = 0)
+    function get_all_front($parent)
     {
-        $this->list_this = "SELECT * FROM " . $this->tbname . " a WHERE 1 AND `target` = " . $target . " AND `parent` = " . (int) $parent . " " . $wheres . " ORDER BY `sequ` ASC, a.`dates` DESC";
+        if (is_numeric($parent))
+        {
+            $wheres = " AND `catalog` = " . (int) $parent . " ";
+        }
+        $wheres .= " AND NOW() BETWEEN `sdates` AND `edates` ";
+        $this->list_this = "SELECT * FROM " . $this->tbname . " WHERE 1 " . $wheres . " ORDER BY `sdates` DESC";
         return parent::get_list($this->list_this);
     }
 
     function get_detail_front($pk)
     {
         $pk = (trim($pk) != '') ? $pk : $this->detail_id;
+        $wheres .= " AND NOW() BETWEEN `sdates` AND `edates` ";
 
         if (trim($pk) != '')
-            $this->detail_this = "SELECT * FROM " . $this->tbname . " WHERE  1 AND `sale` = 1 AND " . $this->PK . "=" . $pk;
+            $this->detail_this = "SELECT * FROM " . $this->tbname . " WHERE 1 " . $wheres . " AND " . $this->PK . "=" . $pk;
 
         return parent::get_list($this->detail_this, 1);
+    }
+
+    function get_pre_img_front($path = "")
+    {
+        if (is_file($this->get_dir() . $path))
+            return $this->get_dir() . "" . $path;
+        else
+            return "img/pattern/pattern1.jpg";
     }
 
     function get_status($v)
@@ -124,13 +143,38 @@ class Photo extends Superobj
     }
 
     ############################################################################
-    function renew($data)
+    function renew()
     {
-        if ($data)
+        $photos = function(&$data) {
+            $data2 = $data;
+            $data2['parent'] = $data2['id'];
+            unset($data2['id']);
+            foreach ($data2['img2'] as $v)
+            {
+                $data2['img'] = $v;
+                $obj = new Photo;
+                $obj->renew($data2);
+            }
+            $data['img2'] = null;
+            $data['delid'] = null;
+        };
+
+        if ($_POST['img2'] && is_numeric($_POST['id']))
         {
-            $this->post_arr = $data;
+            $photos($this->post_arr);
+        }
+
+        if (!$_POST['link_blank'] && is_numeric($_POST['id']))
+        {
+            $this->post_arr['link_blank'] = 0;
         }
         parent::renew($this->post_arr, $this->file_arr, $this->sdir, $this->s_size);
+
+        if ($_POST['img2'] && !is_numeric($_POST['id']))
+        {
+            $_POST['id'] = $this->get_lastID();
+            $photos($this->post_arr);
+        }
     }
 
     function killu()

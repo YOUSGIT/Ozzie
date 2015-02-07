@@ -33,15 +33,21 @@ class Site extends Superobj
             $this->set_field($this->tbname);
     }
 
-    function get_brief()
+    function get_organization()
     {
-        $sql = "SELECT a.`brief` FROM " . $this->tbname . " a LIMIT 1";
+        $sql = "SELECT a.`organization` FROM " . $this->tbname . " a LIMIT 1";
         return parent::get_list($sql, 1);
     }
 
     function get_contact()
     {
         $sql = "SELECT a.`contact` FROM " . $this->tbname . " a LIMIT 1";
+        return parent::get_list($sql, 1);
+    }
+    
+    function get_about()
+    {
+        $sql = "SELECT a.`about_en`, a.`about_zhTW` FROM " . $this->tbname . " a LIMIT 1";
         return parent::get_list($sql, 1);
     }
 
