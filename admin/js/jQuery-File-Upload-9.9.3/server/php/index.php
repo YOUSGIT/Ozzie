@@ -11,5 +11,11 @@
  */
 
 error_reporting(E_ALL | E_STRICT);
+require(dirname(__FILE__).'/../../../../../_init.php');
 require('UploadHandler.php');
-$upload_handler = new UploadHandler();
+usleep(mt_rand(100,10000));
+$option = array(
+'upload_dir' => _ROOT.'images/photo/',
+'upload_url' => WEB.'images/photo/'
+);
+$upload_handler = new UploadHandler($option);
