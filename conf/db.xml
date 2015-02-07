@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<db>
+    <Servers>
+        <Server id="0">
+            <Host>internal-db.s149218.gridserver.com</Host>
+            <User>db149218_dev</User>
+            <Pass>Fde1221@52</Pass>
+            <Alias>myDB</Alias>
+            <DB>db149218_ozzie</DB>
+            <Type>mysql</Type>
+            <Mode>W</Mode>
+            <Comments />
+        </Server>
+    </Servers>
+</db>
