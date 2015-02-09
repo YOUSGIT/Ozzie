@@ -54,6 +54,7 @@ body.box {
     position:absolute;
     left:5px;
     top:10px;
+    display:none;
 }
 
 #head h1 .logo:hover {
@@ -677,6 +678,7 @@ body.box {
         width: 30px;
         height:30px;
         font-size: 30px;
+        display:block;
     }
     
     #head .menu {
