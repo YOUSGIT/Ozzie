@@ -1,5 +1,19 @@
+<?php
+$CatalogProject = new CatalogProject;
+$catalogs = $CatalogProject->get_all();
+$cats = array();
+foreach ($catalogs as $catalog)
+{
+    $cats[$catalog['id']] = $catalog['title'];
+}
+?>
 <div id="head">
-    <h1><a href="index.php">奧茲藝術 OZZIE</a></h1>
+
+    <h1>
+        <a href="index.php" class="logo">奧茲藝術 OZZIE</a>
+        <a class="toggle"><i class="fa fa-bars"></i></a>
+    </h1>
+
     <div class="menu">
         <ul>
             <li><a href="about.php">About</a></li>
@@ -9,12 +23,14 @@
         <ul>
             <li><a href="projects.php">Projects</a>
                 <ul class="sub">
-                    <li><a href="projects.php">Curating </a></li>
-                    <li><a href="projects.php">Art Direction </a></li>
-                    <li><a href="projects.php">Exhibition Design</a></li>
-                    <li><a href="projects.php">Space </a></li>
-                    <li><a href="projects.php">Visual Communication</a></li>
-                    <li><a href="projects.php">Education</a></li>
+                <?php
+                foreach($cats as $catid =>$cat)
+                {
+                        ?>
+                    <li><a href="projects.php?c=<?= $catid; ?>"><?= $cat; ?> </a></li>
+                    <?php
+                }
+                ?>
                 </ul>
             </li>
         </ul>

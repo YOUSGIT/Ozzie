@@ -107,14 +107,25 @@ class News extends Superobj implements Press
     }
 
     #############################################################################
-    function get_all_front($parent)
+    function get_all_front($from)
     {
         if (is_numeric($parent))
         {
-            $wheres = " AND `catalog` = " . (int) $parent . " ";
+            // $wheres = " AND `catalog` = " . (int) $parent . " ";
         }
         $wheres .= " AND NOW() BETWEEN `sdates` AND `edates` ";
-        $this->list_this = "SELECT * FROM " . $this->tbname . " WHERE 1 " . $wheres . " ORDER BY `sdates` DESC";
+        $this->list_this = "SELECT * FROM " . $this->tbname . " WHERE 1 " . $wheres . " ORDER BY `dates` DESC ";
+        $count = 10;
+        if (!is_numeric($from))
+        {
+            $from = 0;
+        }
+        else
+        {
+            $from = $from * $count;
+        }
+        $this->list_this .= "LIMIT " . $from . ", " . $count;
+        // dd($this->list_this);
         return parent::get_list($this->list_this);
     }
 
@@ -134,7 +145,7 @@ class News extends Superobj implements Press
         if (is_file($this->get_dir() . $path))
             return $this->get_dir() . "" . $path;
         else
-            return "img/pattern/pattern1.jpg";
+            return "images/ozzie_logo.png";
     }
 
     function get_status($v)

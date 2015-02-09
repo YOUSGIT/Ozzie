@@ -8,7 +8,7 @@ $data = $obj->get_all();
     <head>
         <?php require_once('inc/_head.php'); ?>
         <!-- Bootstrap Form Helpers -->
-        <link href="./js/BootstrapFormHelpers-master/dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
+        <link href="../script/BootstrapFormHelpers-master/dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
 
     </head>
     <body>
@@ -86,8 +86,8 @@ $data = $obj->get_all();
         </div>
         <!-- /#wrapper -->
         <?php require_once('inc/_foot.php'); ?>
-        <script src="./js/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers-countries.zh_TW.js"></script>
-        <script src="./js/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers.min.js"></script>
+        <script src="../script/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers-countries.zh_TW.js"></script>
+        <script src="../script/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers.min.js"></script>
         <script type="text/javascript">
             !function (window, undefined)
             {

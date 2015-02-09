@@ -2,17 +2,17 @@
 
 @font-face {
     font-family: FuturaLT;
-    src: url('Futura (Light).ttf');
+    src: url('../fonts/Futura (Light).ttf');
 }
 
 @font-face {
     font-family: FuturaBK;
-    src: url('futena_book.ttf');
+    src: url('../fonts/futena_book.ttf');
 }
 
 @font-face {
     font-family: SOSA;
-    src: url('sosa.ttf');
+    src: url('../fonts/sosa.ttf');
 }
 
 body {
@@ -39,7 +39,7 @@ body.box {
     padding: 20px 0px 20px 0px;
 }
 
-#head h1 a {
+#head .logo {
     background-image: url(../images/ozzie_logo.png);
     background-repeat: no-repeat;
     height: 34px;
@@ -50,8 +50,13 @@ body.box {
     left: 0px;
     top: 20px;
 }
+#head .toggle{
+    position:absolute;
+    left:5px;
+    top:10px;
+}
 
-#head h1 a:hover {
+#head h1 .logo:hover {
     background-image: url(../images/ozzie_logo_color.png);
     background-repeat: no-repeat;
     height: 34px;
@@ -90,7 +95,7 @@ body.box {
 
 
 
- #head .menu .sub a {
+#head .menu .sub a {
     font-size: 14px;
     line-height: 22px;
     height: 22px;
@@ -206,6 +211,11 @@ body.box {
     width: 100%;
     margin: 20px auto;
     display: block;
+}
+
+#main > h1{
+    font-size: 26px;
+    margin-bottom: 20px;
 }
 /*首頁結束*/
 .footer {
@@ -636,4 +646,67 @@ body.box {
     background:none;
     background-color: rgba(0, 0, 0, 0.5);
     color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+@media screen and ( max-width:680px) {
+    #info{
+        display:none;
+    }
+    
+    #head {
+        height: auto;
+    }
+    
+    #head .logos{
+        display: none;
+    }
+
+    #head .logo{
+        
+    }
+    #head > h1{
+        margin-top: 10px;
+    }
+    #head .toggle{
+        position:absolute;
+        left:auto;
+        right:10px;
+        top:20px;
+        width: 30px;
+        height:30px;
+        font-size: 30px;
+    }
+    
+    #head .menu {
+        display: block;
+        height:auto;
+        position:absolute;
+        left:0;
+        top:60px;
+        z-index: 9999;
+        background-color: #FFF;
+        width: 100%;
+        display: none;
+    }
+
+    #head .menu > ul {
+        display: block;        
+        margin: auto;
+    }
+
+    
+    #head .menu ul li a{        
+        height:auto;
+        padding: 5px;
+        border-bottom: solid 1px #000;
+        font-size: 20px;
+    }
+
+
+
+    
+
+
 }

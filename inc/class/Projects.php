@@ -113,14 +113,25 @@ class Projects extends Superobj implements Press
     }
 
     #############################################################################
-    function get_all_front($parent)
+    function get_all_front($from)
     {
+        $parent = $_REQUEST['c'];
         if (is_numeric($parent))
         {
-            $wheres = " AND `catalog` = " . (int) $parent . " ";
+            $wheres = ' AND `catalog` LIKE \'%"' . (int) $parent . '"%\' ';
         }
         $wheres .= " AND NOW() BETWEEN `sdates` AND `edates` ";
-        $this->list_this = "SELECT * FROM " . $this->tbname . " WHERE 1 " . $wheres . " ORDER BY `sdates` DESC";
+        $this->list_this = "SELECT * FROM " . $this->tbname . " WHERE 1 " . $wheres . " ORDER BY `sequ` ASC, `sdates` DESC";
+        $count = 10;
+        if (!is_numeric($from))
+        {
+            $from = 0;
+        }
+        else
+        {
+            $from = $from * $count;
+        }
+        $this->list_this .= " LIMIT " . $from . ", " . $count;
         return parent::get_list($this->list_this);
     }
 

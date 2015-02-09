@@ -1,12 +1,22 @@
-﻿<!DOCTYPE HTML>
+<?php
+require_once(dirname(__FILE__) . '/_init.php');
+
+$obj = new News;
+$Photo = new Photo;
+$data = $obj->get_detail_front();
+$photo = null;
+if ($data['id'])
+{
+    $photo = $Photo->get_all(1, $data['id']);
+}
+?>
+<!DOCTYPE HTML>
 <html>
     <head>
         <?php require_once('inc/_head.php'); ?>
         <script src="script/jquery.cycle2.min.js"></script>
     </head>
-
     <body class="box">
-
         <div class="work">
             <div id="gallery" class="photo cycle-slideshow"
                  data-cycle-log ="false"
@@ -16,23 +26,24 @@
                  data-cycle-timeout="0"
                  data-cycle-prev="#prev"
                  data-cycle-next="#next">
-                <img src="images/sample_work_large.jpg">
-                <img src="images/sample_work_large.jpg">
-                <img src="images/sample_work_large.jpg">
-                <img src="images/sample_work_large.jpg">
-                <img src="images/sample_work_large.jpg">
+                     <?php
+                     foreach ($photo as $v)
+                     {
+                         ?>
+                    <img src="<?= $obj->get_pre_img_front($v['img']); ?>">
+                    <?php
+                }
+                ?>
             </div>
-            <div class="number custom-caption">TAIWAN</div>
-            <div class="title">Wide White Spaces</div>
-            <div class="year">2015</div>
+            <div class="number custom-caption"><span class="bfh-countries" data-country="<?= $data['location']; ?>" data-flags="false"></span></div>
+            <div class="title"><?= $data['title']; ?></div>
+            <div class="year"><?= substr($data['dates'], 0, 10); ?></div>
             <div class="control">
                 <span id="prev" class="prev"><a href="#">< </a></span>
                 <span id="next" class="next"><a href="#">> </a></span>
             </div>
             <div style="clear: both"></div>
-            <div class="content">In early 2011, we were invited to participate in Wide White Space, an exhibition at CCA Wattis, San Francisco, organised by the American graphic designer and curator Jon Sueda, which addressed the relationship of graphic design, publishing and exhibition-making. Responding to the close relationship of book and exhibition-making, we contributed the Cosey Complex Reader, whose pages were recreated to suggest their original on-site production at the ICA, London.</div>
+            <div class="content"><?= ($data['content']); ?></div>
         </div>
-
-
     </body>
 </html>

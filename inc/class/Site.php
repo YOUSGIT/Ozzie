@@ -10,15 +10,17 @@ class Site extends Superobj
     protected $limit = 2;
     protected $sort_where;
     protected $tbname = SITE;
+    protected $tbname1 = PROJECTS;
+    protected $tbname2 = NEWS;
+    protected $tbname3 = EVENTS;
     var $sdir;
-    var $back = './account.php';
+    var $back = './index.php';
     var $this_Page = this_Page;
     var $detail_id;
     var $is_sort = false;
     var $sort_arr = array();
 
     ####################################################################################
-
     function __construct($debug = Debug)
     {
         parent::__construct($debug);
@@ -44,11 +46,42 @@ class Site extends Superobj
         $sql = "SELECT a.`contact` FROM " . $this->tbname . " a LIMIT 1";
         return parent::get_list($sql, 1);
     }
-    
+
     function get_about()
     {
         $sql = "SELECT a.`about_en`, a.`about_zhTW` FROM " . $this->tbname . " a LIMIT 1";
         return parent::get_list($sql, 1);
+    }
+
+    function get_index_wall($from)
+    {
+        $wheres .= " AND NOW() BETWEEN `sdates` AND `edates` ";
+
+        $this->list_this = "";
+        for ($i = 1; $i <= 3; $i++)
+        {
+            $this->list_this .= "( SELECT *, @group := " . $i . " as `g` FROM `" . $this->{'tbname' . $i} . "` WHERE 1 " . $wheres . " ORDER BY `sequ` ASC, `sdates` DESC )";
+
+            if ($i < 3)
+            {
+                $this->list_this .=" UNION ";
+            }
+        }
+        $sql = "SELECT a.* FROM (" . $this->list_this . ") a ORDER BY a.`sdates` DESC ";
+        // dd($sql);
+        $count = 10;
+        if (!is_numeric($from))
+        {
+            $from = 0;
+        }
+        else
+        {
+            $from = $from * $count;
+        }
+        $sql .= "LIMIT " . $from . ", " . $count;
+
+        // dd($this->list_this);
+        return parent::get_list($sql);
     }
 
     function login()
@@ -92,7 +125,7 @@ class Site extends Superobj
         if ($_SESSION['AdmiN'])
             $AdmiN = $_SESSION['AdmiN'];
 
-        $excludeArr = array("index.php", "logincheck.php", "logout.php");
+        $excludeArr = array("login.php", "index.php", "logincheck.php", "logout.php");
 
         if ((!isset($AdmiN) || empty($AdmiN) || $_SESSION['token'] != md5($AdmiN . $_SESSION['sid'])) && file_exists("admin.admin"))
             if (!in_array(this_Page, $excludeArr))
@@ -126,7 +159,6 @@ class Site extends Superobj
     }
 
     #################################################################
-
     function is_sort()
     {
         return $this->is_sort;

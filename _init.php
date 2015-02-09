@@ -27,9 +27,7 @@ define('CASENAME', 'ozzie');
 
 // 定義資料表之通用名
 define('SITE', CASENAME . '_site_conf');
-define('CONSUL', CASENAME . '_consultation');
 define('CATPROJECT', CASENAME . '_catalog_project');
-define('CATPRESS', CASENAME . '_catalog_press');
 define('PROJECTS', CASENAME . '_projects');
 define('NEWS', CASENAME . '_news');
 define('PHOTO', CASENAME . '_photo');
@@ -76,11 +74,11 @@ $_db = new DB;
 // check login
 if (!is_object(unserialize($_SESSION['loginObj'])))
 {
-    // Site::checkLogin();
+    Site::checkLogin();
 }
 else
 {
-    // unserialize($_SESSION['loginObj'])->checkLogin();
+    unserialize($_SESSION['loginObj'])->checkLogin();
 }
 
 $_POST = TrimArray($_POST);

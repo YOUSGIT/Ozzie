@@ -1,13 +1,13 @@
 <?php
 require_once(dirname(__FILE__) . '/_init.php');
 
-$obj = new Projects;
+$obj = new Events;
 $Photo = new Photo;
 $data = $obj->get_detail_front();
 $photo = null;
 if ($data['id'])
 {
-    $photo = $Photo->get_all(3, $data['id']);
+    $photo = $Photo->get_all(2, $data['id']);
 }
 ?>
 <!DOCTYPE HTML>
@@ -15,25 +15,6 @@ if ($data['id'])
     <head>
         <?php require_once('inc/_head.php'); ?>
         <script src="script/jquery.cycle2.min.js"></script>
-        <script>
-            $(function () {
-
-                $(".custom-caption").text(padLeft(1, 3).toString() + "/" + padLeft($("#gallery img").length, 3).toString());
-
-                var gallery = $('#gallery').on('cycle-before', function (event, optionHash, outgoingSlideEl, incomingSlideEl, forwardFlag) {
-                    $(".custom-caption").text(padLeft(optionHash.slideNum, 3).toString() + "/" + padLeft(optionHash.slideCount, 3).toString());
-                }).on('cycle-initialized', function (event, optionHash) {
-                    console.log(optionHash);
-                    //$(".custom-caption").text(padLeft(1,3).toString()+"/"+padLeft(optionHash.slideCount,3).toString());
-                });
-            });
-            function padLeft(str, lenght) {
-                if (str.length >= lenght)
-                    return str;
-                else
-                    return padLeft("0" + str, lenght);
-            }
-        </script>
     </head>
     <body class="box">
         <div class="work">
@@ -54,6 +35,7 @@ if ($data['id'])
                 }
                 ?>
             </div>
+            <div class="number custom-caption"><span class="bfh-countries" data-country="<?= $data['location']; ?>" data-flags="false"></span></div>
             <div class="title"><?= $data['title']; ?></div>
             <div class="year"><?= substr($data['dates'], 0, 10); ?></div>
             <div class="control">

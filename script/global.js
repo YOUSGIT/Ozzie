@@ -14,6 +14,7 @@
     });
 
     wall.fitWidth();
+    window['wall'] = wall;
 
     $('.wall .brick').on('mouseover', function () {
         $(this).stop().animate({backgroundColor: $(this).attr("data-color")}, 500);
@@ -42,6 +43,11 @@
             
             $(".fancybox-overlay").stop().animate({backgroundColor: color[Math.floor(Math.random() * color.length)]}, 500);
         }
+    });
+    
+    //Menu
+    $(".toggle").on("click",function(){
+        $(".menu").slideToggle();
     });
 
 });

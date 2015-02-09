@@ -15,7 +15,7 @@ if ($data['id'])
     <head>
         <?php require_once('inc/_head.php'); ?>
         <!-- Bootstrap Form Helpers -->
-        <link href="./js/BootstrapFormHelpers-master/dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
+        <link href="../script/BootstrapFormHelpers-master/dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
         <style>
             label.error
             {
@@ -80,6 +80,20 @@ if ($data['id'])
                                             <div class="form-group col-lg-2">
                                                 <label>結束時間</label>
                                                 <input name="edates"  value="<?= $data['edates']; ?>" readonlytype="text" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group col-lg-1">
+                                                <label>方塊大小</label>
+                                                <select name="brick_size" class="form-control">
+                                                    <option value="11" <?= $data['brick_size'] == "11" ? 'selected="selected"' : ''; ?>>1x1</option>
+                                                    <option value="12" <?= $data['brick_size'] == "12" ? 'selected="selected"' : ''; ?>>1x2</option>
+                                                    <option value="21" <?= $data['brick_size'] == "21" ? 'selected="selected"' : ''; ?>>2x1</option>
+                                                    <option value="22" <?= $data['brick_size'] == "22" ? 'selected="selected"' : ''; ?>>2x2</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-lg-2">
+                                                <label>方塊色彩</label>
+                                                <div class="bfh-colorpicker" data-name="color" data-color="<?= $data['color'] != '' ? $data['color'] : '#DDDDDD'; ?>">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -170,8 +184,8 @@ if ($data['id'])
         <script src="js/jQuery-File-Upload-9.9.3/js/jquery.fileupload-audio.js"></script>
         <script src="js/jQuery-File-Upload-9.9.3/js/jquery.fileupload-video.js"></script>
         <script src="js/jQuery-File-Upload-9.9.3/js/jquery.fileupload-validate.js"></script>
-        <script src="./js/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers-countries.zh_TW.js"></script>
-        <script src="./js/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers.min.js"></script>
+        <script src="../script/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers-countries.zh_TW.js"></script>
+        <script src="../script/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers.min.js"></script>
         <script type="text/javascript">
             !function (window, undefined)
             {

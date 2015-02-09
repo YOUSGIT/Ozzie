@@ -5,7 +5,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.html">Ozzie Art Consultants 奧茲藝術顧問</a>
+    <a class="navbar-brand" >Ozzie Art Consultants 奧茲藝術顧問</a>
 
 
 </div>
@@ -26,8 +26,8 @@
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">                            
-            <li><a href="login.html"><i class="fa fa-edit fa-fw"></i> 修改密碼</a>
-            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 登出</a>
+            <li><a href="profile.php"><i class="fa fa-edit fa-fw"></i> 修改密碼</a>
+            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> 登出</a>
             </li>
         </ul>
         <!-- /.dropdown-user -->
