@@ -1,6 +1,6 @@
 <?php
 
-class Product extends Superobj
+class Projects extends Superobj implements Press
 {
 
     protected $post_arr = array();
@@ -8,19 +8,18 @@ class Product extends Superobj
     protected $del_arr;
     protected $limit = 2;
     protected $sort_where = "";
-    protected $tbname = PRODUCT;
-    protected $tbname_cat = CATPRODUCT;
+    protected $tbname = PROJECTS;
     protected $tbname_photo = PHOTO;
-    public $back = './product.php';
+    public $back = './projects.php';
     public $is_image = false;
     public $list_this;
     public $detail_this;
     public $this_Page = this_Page;
     public $detail_id;
-    public $is_sort = false;
+    public $is_sort = true;
     public $sort_arr = array();
     public $status_arr = array(1 => "上架", 0 => "下架");
-    public $default_bg = 'pattern1.jpg';
+    public $default_bg = 'ozzie_logo.png';
     public $sdir = UPLOAD_Image;
 
     ####################################################################################
@@ -81,7 +80,8 @@ class Product extends Superobj
         // if (is_numeric($_GET['s']) && $_GET['s'] != '')
         // $wheres = " AND `status` = " . $_GET['s'];
 
-        $this->list_this = "SELECT a.*, COUNT(b.`id`) `cnt` FROM (SELECT a.*, b.`title` `title_cat` FROM " . $this->tbname . " a LEFT JOIN `" . $this->tbname_cat . "` b ON a.`catalog` = b.`id` WHERE 1 " . $wheres . "  ORDER BY a.`sequ` ASC, a.`dates` DESC) a LEFT JOIN `" . $this->tbname_photo . "` b ON a.`id` = b.`parent` AND b.`target` = 1 WHERE 1 GROUP BY a.`id`";
+        $this->list_this = "SELECT a.* FROM " . $this->tbname . " a ORDER BY a.`sequ` ASC, a.`dates` DESC";
+        // $this->list_this = "SELECT a.* FROM ".$this->tbname." a LEFT JOIN `" . $this->tbname_photo . "` b ON a.`id` = b.`parent` AND b.`target` = 1 WHERE 1 GROUP BY a.`id`";
         return parent::get_list($this->list_this);
     }
 
@@ -101,8 +101,14 @@ class Product extends Superobj
         {
             if (is_file($this->get_dir() . "" . $path))
                 return $this->get_dir() . "" . ($path);
-            else
+            else if (is_file($this->get_dir() . $this->default_bg))
+            {
                 return $this->get_dir() . $this->default_bg;
+            }
+            else
+            {
+                return "images/ozzie_logo.png";
+            }
         }
     }
 
@@ -113,8 +119,8 @@ class Product extends Superobj
         {
             $wheres = " AND `catalog` = " . (int) $parent . " ";
         }
-        $wheres .= " AND (NOW() BETWEEN `sdates` AND `edates`) ";
-        $this->list_this = "SELECT * FROM " . $this->tbname . " WHERE 1 " . $wheres . " ORDER BY `sequ` ASC";
+        $wheres .= " AND NOW() BETWEEN `sdates` AND `edates` ";
+        $this->list_this = "SELECT * FROM " . $this->tbname . " WHERE 1 " . $wheres . " ORDER BY `sdates` DESC";
         return parent::get_list($this->list_this);
     }
 
@@ -124,7 +130,7 @@ class Product extends Superobj
         $wheres .= " AND NOW() BETWEEN `sdates` AND `edates` ";
 
         if (trim($pk) != '')
-            $this->detail_this = "SELECT * FROM " . $this->tbname . " WHERE  1 " . $wheres . " AND " . $this->PK . "=" . $pk;
+            $this->detail_this = "SELECT * FROM " . $this->tbname . " WHERE 1 " . $wheres . " AND " . $this->PK . "=" . $pk;
 
         return parent::get_list($this->detail_this, 1);
     }
@@ -134,7 +140,7 @@ class Product extends Superobj
         if (is_file($this->get_dir() . $path))
             return $this->get_dir() . "" . $path;
         else
-            return "img/pattern/pattern1.jpg";
+            return "images/ozzie_logo.png";
     }
 
     function get_status($v)
@@ -145,8 +151,7 @@ class Product extends Superobj
     ############################################################################
     function renew()
     {
-        $photos = function(&$data)
-        {
+        $photos = function(&$data) {
             $data2 = $data;
             $data2['parent'] = $data2['id'];
             unset($data2['id']);
@@ -164,6 +169,13 @@ class Product extends Superobj
         {
             $photos($this->post_arr);
         }
+
+        if (!$_POST['link_blank'] && is_numeric($_POST['id']))
+        {
+            $this->post_arr['link_blank'] = 0;
+        }
+
+        $this->post_arr['catalog'] = serialize($this->post_arr['catalog']);
         parent::renew($this->post_arr, $this->file_arr, $this->sdir, $this->s_size);
 
         if ($_POST['img2'] && !is_numeric($_POST['id']))

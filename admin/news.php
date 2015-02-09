@@ -9,7 +9,7 @@ $data = $obj->get_all();
         <?php require_once('inc/_head.php'); ?>
         <!-- Bootstrap Form Helpers -->
         <link href="./js/BootstrapFormHelpers-master/dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
-        
+
     </head>
     <body>
         <div id="wrapper">
@@ -37,47 +37,47 @@ $data = $obj->get_all();
                     <!-- /.col-lg-12 -->
                 </div>
                 <form data-target="form" role="form" method="post" action="processor.php">
-                <div class="row tool">
-                    <div class="col-lg-12">
-                        <a href="news_detail.php" class="btn btn-success"><i class="fa fa-plus"></i> 新增</a>
-                        <a class="btn btn-danger" data-target="del_item"><i class="fa fa-times"></i> 刪除</a>
+                    <div class="row tool">
+                        <div class="col-lg-12">
+                            <a href="news_detail.php" class="btn btn-success"><i class="fa fa-plus"></i> 新增</a>
+                            <a class="btn btn-danger" data-target="del_item"><i class="fa fa-times"></i> 刪除</a>
+                        </div>
+                        <!-- /.col-lg-12 -->
                     </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><input name="selectAll" type="checkbox" /></th>
-                            <th>標題</th>
-                            <th>發生地</th>
-                            <th>建立日期</th>
-                            <th>修改</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach($data as $v)
-                    {
-                            ?>
-                        <tr>
-                            <td><input name="delid[]" type="checkbox" class="" value="<?php echo $v['id']; ?>" /></td>
-                            <td><?= $v['title']; ?></td>
-                            <td><?php
-                            if($v['location']!='')
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><input name="selectAll" type="checkbox" /></th>
+                                <th>標題</th>
+                                <th>發生地</th>
+                                <th>建立日期</th>
+                                <th>修改</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($data as $v)
                             {
                                 ?>
-                            <span class="bfh-countries" data-country="<?= $v['location']; ?>" data-flags="true"></span>
+                                <tr>
+                                    <td><input name="delid[]" type="checkbox" class="" value="<?php echo $v['id']; ?>" /></td>
+                                    <td><?= $v['title']; ?></td>
+                                    <td><?php
+                                        if ($v['location'] != '')
+                                        {
+                                            ?>
+                                            <span class="bfh-countries" data-country="<?= $v['location']; ?>" data-flags="true"></span>
+                                            <?php
+                                        }
+                                        ?></td>
+                                    <td><?= substr($v['dates'], 0, 10); ?></td>
+                                    <td><a href="news_detail.php?id=<?= $v['id']; ?>" class="btn btn-sm btn-primary">修改</a></td>
+                                </tr>
                                 <?php
-                    }
-                    ?></td>
-                            <td><?= $v['dates']; ?></td>
-                            <td><a href="news_detail.php?id=<?= $v['id']; ?>" class="btn btn-sm btn-primary">修改</a></td>
-                        </tr>
-                        <?php
-                    }
-                    ?>
-                    </tbody>
-                </table>
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                     <input type="hidden" name="func" value="News"/>
                     <input type="hidden" name="doit" value="del"/>
                 </form>
@@ -89,16 +89,16 @@ $data = $obj->get_all();
         <script src="./js/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers-countries.zh_TW.js"></script>
         <script src="./js/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers.min.js"></script>
         <script type="text/javascript">
-            !function(window, undefined)
+            !function (window, undefined)
             {
-                $(function()
+                $(function ()
                 {
                     var form = $('form[data-target="form"]');
                     var del_btn = $('a[data-target="del_item"]');
                     // var save_btn = $('button[data-target="save_order"]');
                     // $('table.table > tbody').sortable({ cursor: "move" });
 
-                    $('input[name="selectAll"]').on('click', function() {
+                    $('input[name="selectAll"]').on('click', function () {
                         return form.find("tbody input[type='checkbox']").prop('checked', $(this).prop('checked'));
                     });
 
@@ -125,7 +125,7 @@ $data = $obj->get_all();
                         }
 
                         if (!confirm("確認刪除 ?"))
-                        return false;
+                            return false;
 
                         form.submit();
                         return false;

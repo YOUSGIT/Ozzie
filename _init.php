@@ -28,9 +28,9 @@ define('CASENAME', 'ozzie');
 // 定義資料表之通用名
 define('SITE', CASENAME . '_site_conf');
 define('CONSUL', CASENAME . '_consultation');
-define('CATPRODUCT', CASENAME . '_catalog_product');
+define('CATPROJECT', CASENAME . '_catalog_project');
 define('CATPRESS', CASENAME . '_catalog_press');
-define('PRODUCT', CASENAME . '_product');
+define('PROJECTS', CASENAME . '_projects');
 define('NEWS', CASENAME . '_news');
 define('PHOTO', CASENAME . '_photo');
 define('EVENTS', CASENAME . '_events');

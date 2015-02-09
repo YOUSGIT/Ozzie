@@ -1,6 +1,6 @@
 <?php
 
-class CatalogProduct extends Superobj
+class CatalogProject extends Superobj
 {
 
     protected $post_arr = array();
@@ -8,9 +8,8 @@ class CatalogProduct extends Superobj
     protected $del_arr;
     protected $limit = 2;
     protected $sort_where = "";
-    protected $tbname = CATPRODUCT;
-    public $back = './cat_product.php';
-    public $is_image = false;
+    protected $tbname = CATPROJECT;
+    public $back = './project_category.php';
     public $list_this;
     public $detail_this;
     public $this_Page = this_Page;
@@ -40,7 +39,6 @@ class CatalogProduct extends Superobj
     }
 
     #################################################################################################
-
     function get_all()
     {
         // if (is_numeric($_GET['s']) && $_GET['s'] != '')
@@ -61,7 +59,6 @@ class CatalogProduct extends Superobj
     }
 
     #############################################################################
-
     function get_all_front()
     {
         // $this->list_this = "SELECT * FROM " . $this->tbname . " WHERE 1 AND `sale` = 1 " . $wheres . " ORDER BY `sequ` ASC";
@@ -88,9 +85,12 @@ class CatalogProduct extends Superobj
     }
 
     ############################################################################
-
     function renew()
     {
+        if ($this->post_arr['title'] == '')
+        {
+            $this->post_arr['title'] = "未命名";
+        }
         parent::renew($this->post_arr, $this->file_arr, $this->sdir, $this->s_size);
     }
 

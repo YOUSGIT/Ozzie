@@ -23,7 +23,6 @@ if ($data['id'])
                 font-weight: normal;
                 font-size: 11px;
             }
-
         </style>
     </head>
     <body>
@@ -54,7 +53,7 @@ if ($data['id'])
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <?= is_numeric($_GET['id']) ? '修改' : '新增' ?>新增新聞
+                                <?= is_numeric($data['id']) ? '修改' : '新增' ?>新增新聞
                             </div>
                             <div class="panel-body">
                                 <div class="col-lg-12">
@@ -103,7 +102,6 @@ if ($data['id'])
                                             <label>內容圖片</label>
                                             <!-- The file input field used as target for the file upload widget -->
                                             <input id="fileupload2" type="file" name="files[]" multiple>
-                                            </span>
                                             <br/>
                                             <br/>
                                             <div id="progress2" class="progress">
@@ -112,7 +110,7 @@ if ($data['id'])
                                             <div id="files2" class="files"></div>
                                             <hr/>
                                             <?php
-                                            if ($_GET['id'])
+                                            if ($data['id'])
                                             {
                                                 ?>
                                                 <div>
@@ -128,7 +126,7 @@ if ($data['id'])
                                             <?php }
                                             ?>
                                         </div>
-                                        <button id="save" class="btn btn-primary" type="submit" class="btn btn-default">儲存</button>
+                                        <button id="save" class="btn btn-primary btn-lg" type="submit" class="btn btn-default">儲存</button>
                                         <button type="button" data-target="del_item" class="btn btn-danger" data-placement="top" title="刪除勾選的圖片"><span class="glyphicon glyphicon-minus" ></span> 刪除圖片</button>&nbsp;
                                         <a href="news.php" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> 取消</a>
                                         <!--<button type="submit" class="btn btn-info">儲存</button>-->
@@ -185,6 +183,9 @@ if ($data['id'])
                     set_datetimepicker($('input[name="edates"]'));
                     set_datepicker($('input[name="dates"]'));
 
+                    jQuery.extend(jQuery.validator.messages, {
+                        required: "*必填欄位",
+                    });
                     CKEDITOR.replace("content");
                     CKEDITOR.config.allowedContent = true;
                     validator = _FORM.validate();
@@ -305,11 +306,11 @@ if ($data['id'])
                             node = $(data.context.children()[index]);
                         if (file.preview)
                         {
-                            node.prepend('<br>').prepend(file.preview);
+                            node.prepend('<br/>').prepend(file.preview);
                         }
                         if (file.error)
                         {
-                            node.append('<br>').append($('<span class="text-danger"/>').text(file.error));
+                            node.append('<br/>').append($('<span class="text-danger"/>').text(file.error));
                         }
                         if (index + 1 === data.files.length)
                         {
@@ -339,7 +340,7 @@ if ($data['id'])
                             {
                                 var error = $('<span class="text-danger"/>').text(file.error);
                                 $(data.context.children()[index])
-                                    .append('<br>')
+                                    .append('<br/>')
                                     .append(error);
                             }
                         });
@@ -349,7 +350,7 @@ if ($data['id'])
                         {
                             var error = $('<span class="text-danger"/>').text('File upload failed.');
                             $(data.context.children()[index])
-                                .append('<br>')
+                                .append('<br/>')
                                 .append(error);
                         });
                     }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');

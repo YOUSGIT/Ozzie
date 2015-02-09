@@ -42,14 +42,14 @@ if ($FUNC)
             $func = new Photo;
             break;
 
-        case "CatProduct":
+        case "CatProject":
 
-            $func = new CatalogProduct;
+            $func = new CatalogProject;
             break;
 
-        case "CatPress":
+        case "Projects":
 
-            $func = new CatalogPress;
+            $func = new Projects;
             break;
 
         case "Site":

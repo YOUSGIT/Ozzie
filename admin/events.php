@@ -70,7 +70,7 @@ $data = $obj->get_all();
                                             <?php
                                         }
                                         ?></td>
-                                    <td><?= $v['dates']; ?></td>
+                                    <td><?= substr($v['dates'], 0, 10); ?></td>
                                     <td><a href="event_detail.php?id=<?= $v['id']; ?>" class="btn btn-sm btn-primary">修改</a></td>
                                 </tr>
                                 <?php
