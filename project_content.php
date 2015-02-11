@@ -54,6 +54,7 @@ if ($data['id'])
                 }
                 ?>
             </div>
+            <div class="number custom-caption"></div>
             <div class="title"><?= $data['title']; ?></div>
             <div class="year"><?= substr($data['dates'], 0, 10); ?></div>
             <div class="control">

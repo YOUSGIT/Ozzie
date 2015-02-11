@@ -54,6 +54,7 @@ body.box {
     position:absolute;
     left:5px;
     top:10px;
+    display:none;
 }
 
 #head h1 .logo:hover {
@@ -565,17 +566,20 @@ body.box {
 
 .wall .brick > .content {
     padding: 30px;
+
 }
 
 .wall .brick > .content h1 {
     font-size: 26px;
     margin-bottom: 30px;
     color:#000;
+    line-height: 130%;
 }
 
 .wall .brick > .content p {
     font-size: 20px;
-    color: #333;
+    color: #333;    
+    line-height: 130%;
 }
 
 .wall .brick > .content .lct {
@@ -644,7 +648,7 @@ body.box {
 
 .fancybox-overlay{
     background:none;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 71, 175, 0.5);
     color: rgba(0, 0, 0, 0.5);
 }
 
@@ -654,17 +658,17 @@ body.box {
     #info{
         display:none;
     }
-    
+
     #head {
         height: auto;
     }
-    
+
     #head .logos{
         display: none;
     }
 
     #head .logo{
-        
+
     }
     #head > h1{
         margin-top: 10px;
@@ -677,8 +681,9 @@ body.box {
         width: 30px;
         height:30px;
         font-size: 30px;
+        display:block;
     }
-    
+
     #head .menu {
         display: block;
         height:auto;
@@ -696,7 +701,7 @@ body.box {
         margin: auto;
     }
 
-    
+
     #head .menu ul li a{        
         height:auto;
         padding: 5px;
@@ -705,8 +710,18 @@ body.box {
     }
 
 
+    .wall .brick img {
+        -webkit-filter: grayscale(0);
+        filter: grayscale(0);
+        filter: none;
 
-    
+    }
+
+    .footer {
+
+        background-image:none;
+
+    }
 
 
 }
