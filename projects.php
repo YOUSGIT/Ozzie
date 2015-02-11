@@ -17,24 +17,7 @@ $data = $obj->get_all_front(0);
                     <?php
                     foreach ($data as $v)
                     {
-                        switch ($v['brick_size'])
-                        {
-                            case "11":
-                                $max = 100;
-                                break;
-                            case "12":
-                                $max = 200;
-                                break;
-                            case "21":
-                                $max = 200;
-                                break;
-                            case "22":
-                                $max = 250;
-                                break;
-                            default:
-                                $max = 300;
-                                break;
-                        }
+                        $max = get_block_max_strlen($v['brick_size']);
                         ?>
                         <a class="brick size<?= $v['brick_size']; ?> various" data-fancybox-type="iframe" href="project_content.php?id=<?= $v['id']; ?>"> <img src="<?= $obj->get_img($v['img']); ?>"></a>
                             <?php

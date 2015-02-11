@@ -22,7 +22,7 @@ if ($data['id'])
     <head>
         <?php require_once('inc/_head.php'); ?>
         <!-- Bootstrap Form Helpers -->
-        <link href="./js/BootstrapFormHelpers-master/dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
+        <link href="../script/BootstrapFormHelpers-master/dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
         <style>
             label.error
             {
@@ -203,8 +203,8 @@ if ($data['id'])
         <script src="js/jQuery-File-Upload-9.9.3/js/jquery.fileupload-audio.js"></script>
         <script src="js/jQuery-File-Upload-9.9.3/js/jquery.fileupload-video.js"></script>
         <script src="js/jQuery-File-Upload-9.9.3/js/jquery.fileupload-validate.js"></script>
-        <script src="./js/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers-countries.zh_TW.js"></script>
-        <script src="./js/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers.min.js"></script>
+        <script src="../script/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers-countries.zh_TW.js"></script>
+        <script src="../script/BootstrapFormHelpers-master/dist/js/bootstrap-formhelpers.min.js"></script>
         <script type="text/javascript">
             !function (window, undefined)
             {

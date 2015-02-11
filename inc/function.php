@@ -256,7 +256,6 @@ function resizeimage($dir, $sor, $new_w, $new_h, $new_name, $thumbnail = false, 
  * Output: `database`.`table`
  *
  * */
-
 function add_field_quotes($str)
 {
     $str = str_replace('`', '', $str);
@@ -301,4 +300,39 @@ function get_ip()
         $user_ip = $user_ip[0];
     }
     return $user_ip;
+}
+
+function getSubstr($string, $start, $length)
+{
+    if (mb_strlen(trim($string), 'utf-8') > $length)
+    {
+        $str = mb_substr($string, $start, $length, 'utf-8');
+        return $str . '...';
+    }
+    else
+    {
+        return $string;
+    }
+}
+
+function get_block_max_strlen($brick_size = 11)
+{
+    switch ($brick_size)
+    {
+        default :
+        case "11":
+            $max = 50;
+            break;
+        case "12":
+            $max = 100;
+            break;
+        case "21":
+            $max = 150;
+            break;
+        case "22":
+            $max = 200;
+            break;
+    }
+
+    return $max;
 }

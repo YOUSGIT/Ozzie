@@ -19,7 +19,7 @@ if (!$ret = $obj->login())
 else
 {
     if ($obj->setSession($ret))
-        header("Location: ./static_about.php");
+        header("Location: ./projects.php");
     else
         header("Location: ./logout.php");
     exit;

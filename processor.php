@@ -70,24 +70,7 @@ switch ($DOIT)
             $Projects = new Projects;
             foreach ($data as $v)
             {
-                switch ($v['brick_size'])
-                {
-                    case "11":
-                        $max = 100;
-                        break;
-                    case "12":
-                        $max = 200;
-                        break;
-                    case "21":
-                        $max = 200;
-                        break;
-                    case "22":
-                        $max = 250;
-                        break;
-                    default:
-                        $max = 300;
-                        break;
-                }
+                $max = get_block_max_strlen($v['brick_size']);
                 switch ($v['g'])
                 {
                     case "1":
@@ -106,7 +89,7 @@ switch ($DOIT)
                 }
                 else
                 {
-                    $c .= '<a class="brick size' . $v['brick_size'] . ' various" data-color="' . $v['color'] . '" data-fancybox-type="iframe" href="' . $target . '_content.php?id=' . $v['id'] . '"><div class="content"><h1>' . $v['title'] . '</h1><p>' . mb_substr(strip_tags($v['content']), 0, $max) . '...</p><div class="lct"><span class="bfh-countries" data-country="' . $v['location'] . '" data-flags="false"></span></div><div class="year">' . substr($v['dates'], 0, 10) . '</div></div></a>';
+                    $c .= '<a class="brick size' . $v['brick_size'] . ' various" data-color="' . $v['color'] . '" data-fancybox-type="iframe" href="' . $target . '_content.php?id=' . $v['id'] . '"><div class="content"><h1>' . $v['title'] . '</h1><p>' . getSubstr(strip_tags($v['content']), 0, $max) . '...</p><div class="lct"><span class="bfh-countries" data-country="' . $v['location'] . '" data-flags="false"></span></div><div class="year">' . substr($v['dates'], 0, 10) . '</div></div></a>';
                 }
             }
             echo $c;
@@ -121,24 +104,7 @@ switch ($DOIT)
             $c = '';
             foreach ($data as $v)
             {
-                switch ($v['brick_size'])
-                {
-                    case "11":
-                        $max = 100;
-                        break;
-                    case "12":
-                        $max = 200;
-                        break;
-                    case "21":
-                        $max = 200;
-                        break;
-                    case "22":
-                        $max = 250;
-                        break;
-                    default:
-                        $max = 300;
-                        break;
-                }
+                $max = get_block_max_strlen($v['brick_size']);
 
                 if ($DOIT == 'list_projects')
                 {
@@ -146,7 +112,7 @@ switch ($DOIT)
                 }
                 else
                 {
-                    $c .= '<a class="brick size' . $v['brick_size'] . ' various" data-color="' . $v['color'] . '" data-fancybox-type="iframe" href="news_content.php?id=' . $v['id'] . '"><div class="content"><h1>' . $v['title'] . '</h1><p>' . mb_substr(strip_tags($v['content']), 0, $max) . '...</p><div class="lct"><span class="bfh-countries" data-country="' . $v['location'] . '" data-flags="false"></span></div><div class="year">' . substr($v['dates'], 0, 10) . '</div></div></a>';
+                    $c .= '<a class="brick size' . $v['brick_size'] . ' various" data-color="' . $v['color'] . '" data-fancybox-type="iframe" href="news_content.php?id=' . $v['id'] . '"><div class="content"><h1>' . $v['title'] . '</h1><p>' . getSubstr(strip_tags($v['content']), 0, $max) . '...</p><div class="lct"><span class="bfh-countries" data-country="' . $v['location'] . '" data-flags="false"></span></div><div class="year">' . substr($v['dates'], 0, 10) . '</div></div></a>';
                 }
                 // array_push($html,addslashes($c));
             }
