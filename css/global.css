@@ -655,17 +655,17 @@ body.box {
     #info{
         display:none;
     }
-    
+
     #head {
         height: auto;
     }
-    
+
     #head .logos{
         display: none;
     }
 
     #head .logo{
-        
+
     }
     #head > h1{
         margin-top: 10px;
@@ -680,7 +680,7 @@ body.box {
         font-size: 30px;
         display:block;
     }
-    
+
     #head .menu {
         display: block;
         height:auto;
@@ -698,7 +698,7 @@ body.box {
         margin: auto;
     }
 
-    
+
     #head .menu ul li a{        
         height:auto;
         padding: 5px;
@@ -707,8 +707,13 @@ body.box {
     }
 
 
+    .wall .brick img {
+        -webkit-filter: grayscale(0);
+        filter: grayscale(0);
+        filter: none;
 
-    
+    }
+
 
 
 }
