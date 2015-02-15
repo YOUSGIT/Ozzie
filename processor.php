@@ -89,7 +89,7 @@ switch ($DOIT)
                 }
                 else
                 {
-                    $c .= '<a class="brick size' . $v['brick_size'] . ' various" data-color="' . $v['color'] . '" data-fancybox-type="iframe" href="' . $target . '_content.php?id=' . $v['id'] . '"><div class="content"><h1>' . $v['title'] . '</h1><p>' . getSubstr(strip_tags($v['content']), 0, $max) . '...</p><div class="lct"><span class="bfh-countries" data-country="' . $v['location'] . '" data-flags="false"></span></div><div class="year">' . substr($v['dates'], 0, 10) . '</div></div></a>';
+                    $c .= '<a class="brick size' . $v['brick_size'] . ' various" data-color="' . $v['color'] . '" data-fancybox-type="iframe" href="' . $target . '_content.php?id=' . $v['id'] . '"><div class="content"><h1>' . $v['title'] . '</h1><p>' . getSubstr(strip_tags($v['content']), 0, $max) . '...</p><div class="lct"><span class="bfh-countries" data-country="' . $v['location'] . '" data-flags="false"></span></div><div class="year">' . substr($v['dates'], 0, 4) . '</div></div></a>';
                 }
             }
             echo $c;
@@ -112,7 +112,7 @@ switch ($DOIT)
                 }
                 else
                 {
-                    $c .= '<a class="brick size' . $v['brick_size'] . ' various" data-color="' . $v['color'] . '" data-fancybox-type="iframe" href="news_content.php?id=' . $v['id'] . '"><div class="content"><h1>' . $v['title'] . '</h1><p>' . getSubstr(strip_tags($v['content']), 0, $max) . '...</p><div class="lct"><span class="bfh-countries" data-country="' . $v['location'] . '" data-flags="false"></span></div><div class="year">' . substr($v['dates'], 0, 10) . '</div></div></a>';
+                    $c .= '<a class="brick size' . $v['brick_size'] . ' various" data-color="' . $v['color'] . '" data-fancybox-type="iframe" href="news_content.php?id=' . $v['id'] . '"><div class="content"><h1>' . $v['title'] . '</h1><p>' . getSubstr(strip_tags($v['content']), 0, $max) . '...</p><div class="lct"><span class="bfh-countries" data-country="' . $v['location'] . '" data-flags="false"></span></div><div class="year">' . substr($v['dates'], 0, 4) . '</div></div></a>';
                 }
                 // array_push($html,addslashes($c));
             }

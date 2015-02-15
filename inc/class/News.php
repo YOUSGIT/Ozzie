@@ -183,7 +183,7 @@ class News extends Superobj implements Press
 
         if ($_POST['img2'] && !is_numeric($_POST['id']))
         {
-            $_POST['id'] = $this->get_lastID();
+            $this->post_arr['id'] = $this->get_lastID();
             $photos($this->post_arr);
         }
     }

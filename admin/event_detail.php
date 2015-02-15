@@ -79,7 +79,7 @@ if ($data['id'])
                                             </div>
                                             <div class="form-group col-lg-2">
                                                 <label>結束時間</label>
-                                                <input name="edates"  value="<?= $data['edates']; ?>" readonlytype="text" class="form-control" required/>
+                                                <input name="edates"  value="<?= !$data['edates'] ? '2070-12-31 00:00:00' : $data['edates']; ?>" readonly type="text" class="form-control" required/>
                                             </div>
                                             <div class="form-group col-lg-1">
                                                 <label>方塊大小</label>
@@ -92,7 +92,7 @@ if ($data['id'])
                                             </div>
                                             <div class="form-group col-lg-2">
                                                 <label>方塊色彩</label>
-                                                <div class="bfh-colorpicker" data-name="color" data-color="<?= $data['color'] != '' ? $data['color'] : '#DDDDDD'; ?>">
+                                                <div class="bfh-colorpicker" data-name="color" data-color="<?= $data['color'] != '' ? $data['color'] : '#DDDDDD'; ?>" data-close="false">
                                                 </div>
                                             </div>
                                         </div>
@@ -201,11 +201,21 @@ if ($data['id'])
                         required: "*必填欄位",
                     });
 
+                    $('[data-toggle="bfh-colorpicker"]').find('input').removeAttr('readonly');
                     CKEDITOR.replace("content");
                     CKEDITOR.config.allowedContent = true;
                     validator = _FORM.validate();
                     // $('#save').off().on('click', save);
                     del_btn.off().on('click', del).tooltip();
+                    custom_colorpicker();
+
+                    function custom_colorpicker()
+                    {
+                        return $('[data-toggle="bfh-colorpicker"]').find('input').removeAttr('readonly').attr('maxlength', 7).on("change", function ()
+                        {
+                            return $('span.bfh-colorpicker-icon').css("background-color", $(this).val());
+                        });
+                    }
 
                     function del()
                     {

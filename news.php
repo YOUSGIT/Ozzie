@@ -26,7 +26,7 @@ $data = $obj->get_all_front(0);
                                 <h1><?= $v['title']; ?></h1>
                                 <p><?= getSubstr(strip_tags($v['content']), 0, $max); ?>...</p>
                                 <div class="lct"><span class="bfh-countries" data-country="<?= $v['location']; ?>" data-flags="false"></span></div>
-                                <div class="year"><?= substr($v['dates'], 0, 10); ?></div>
+                                <div class="year"><?= substr($v['dates'], 0, 4); ?></div>
                             </div>
                         </a>
                         <?php

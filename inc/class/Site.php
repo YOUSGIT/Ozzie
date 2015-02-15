@@ -86,8 +86,7 @@ class Site extends Superobj
 
     function login()
     {
-        $sql = "SELECT * FROM " . $this->tbname . " WHERE `username` = '" . $this->quote($_POST['id']) . "' AND pw = '" . $this->quote(md5($_POST['pw'])) . "'";
-        // exit($sql);
+        $sql = "SELECT * FROM " . $this->tbname . " WHERE `username` = '" . $this->quote($_POST['id']) . "' AND `pw` = '" . $this->quote(md5($_POST['pw'])) . "'";
         return parent::get_list($sql, 1);
     }
 
@@ -104,9 +103,7 @@ class Site extends Superobj
         $_SESSION['sid'] = (session_id());
         $_SESSION['token'] = md5($ret['username'] . $_SESSION['sid']);
         $_SESSION['loginObj'] = serialize($this);
-        $_SESSION[$this->lang_key] = $lang;
-
-        // exit(print_r($ret));
+        // $_SESSION[$this->lang_key] = $lang;
         return true;
     }
 
