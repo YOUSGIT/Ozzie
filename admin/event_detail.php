@@ -201,7 +201,6 @@ if ($data['id'])
                         required: "*必填欄位",
                     });
 
-                    $('[data-toggle="bfh-colorpicker"]').find('input').removeAttr('readonly');
                     CKEDITOR.replace("content");
                     CKEDITOR.config.allowedContent = true;
                     validator = _FORM.validate();
