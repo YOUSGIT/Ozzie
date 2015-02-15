@@ -45,8 +45,8 @@ foreach ($catalogs as $catalog)
             <li class="logo1"><a href="#">Logo1 </a></li>
             <li class="logo2"><a href="#">Logo2</a></li>
             <li class="logo3"><a href="#">Logo3</a></li>
-            <li class="logo4"><a href="#">Logo4</a></li>
-            <li class="logo5"><a href="#">Logo5</a></li>
+            <li class="logo4"><a href="http://www.1daymuseum.com" target="_blank">Logo4</a></li>
+            <li class="logo5"><a href="http://www.feexpos.com" target="_blank">Logo5</a></li>
         </ul>
     </div>
     <div style="clear: both"></div>

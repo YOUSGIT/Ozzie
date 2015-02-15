@@ -44,6 +44,12 @@ if ($data['id'])
             </div>
             <div style="clear: both"></div>
             <div class="content"><?= ($data['content']); ?></div>
+             <ul class="share">
+                <li><a class="facebook" href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href)) ));"></a></li>
+                <li><a class="weibo" href="javascript:(function(){window.open('http://v.t.sina.com.cn/share/share.php?title='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href)+'&source=bookmark','_blank','width=450,height=400');})()"></a></li>
+                <li><a class="pinterest" target="_blank" href="javascript:void((function(){var%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)})());" class="pin-it-button" count-layout="none"></a></li>
+                <li><a class="google" href="javascript: void(window.open('https://plus.google.com/share?url='.concat(encodeURIComponent(location.href)), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600'));"></a></li>
+            </ul>
         </div>
     </body>
 </html>
