@@ -8,6 +8,8 @@ $data = $obj->get_index_wall(0);
 <html>
     <head>
         <?php require_once('inc/_head.php'); ?>
+        
+        
     </head>
     <body>
         <div id="container">
