@@ -1,5 +1,5 @@
-<?php require_once(dirname(__FILE__) . '/_init.php'); ?>
 <?php
+require_once(dirname(__FILE__) . '/_init.php');
 $obj = new Projects;
 $data = $obj->get_all_front(0);
 ?>
@@ -12,7 +12,13 @@ $data = $obj->get_all_front(0);
         <div id="container">
             <?php require_once('inc/_header.php'); ?>
             <div id="main">
-                <h1>Projects / Art Direction</h1>
+                <?php
+                if (is_numeric($_GET['c']))
+                {
+                    $ret = ' / ' . $cats[$_GET['c']];
+                }
+                ?>
+                <h1>Projects <?= $ret; ?></h1>
                 <div class="wall">
                     <?php
                     foreach ($data as $v)
