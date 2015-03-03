@@ -41,7 +41,7 @@ $data = $obj->get_all_front(0);
             !function (window, undefined)
             {
                 var base = 1;
-                $(window).scroll(function ()
+                var debounced = _.debounce(function ()
                 {
                     var $BodyHeight = $(document).height();
                     var $ViewportHeight = $(window).height();
@@ -49,7 +49,6 @@ $data = $obj->get_all_front(0);
                     if ($BodyHeight == ($ViewportHeight + $ScrollTop))
                     {
                         console.log("Here is bottom");
-
                         var data = {
                             func: "News",
                             doit: "list",
@@ -59,10 +58,15 @@ $data = $obj->get_all_front(0);
                         {
                             wall.appendBlock(ret);
                             refresh_country();
-                            base++;
+                            if (_.size(ret) > 0)
+                            {
+                                base++;
+                            }
                         }, 'html');
                     }
-                });
+                }, 250);
+                var $doc = $(document),
+                $win = $(window).on("scroll", debounced);
             }(window);
         </script>
     </body>

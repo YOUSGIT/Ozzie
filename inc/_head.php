@@ -12,6 +12,7 @@
 <link href="script/BootstrapFormHelpers-master/dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
 
 <script type="text/javascript" src="script/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"></script>
 <script src="script/jquery.fancybox.pack.js"></script>
 <script src="script/jquery.color.js"></script>
 <script src="script/freewall.js"></script>

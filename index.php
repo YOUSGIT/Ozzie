@@ -8,8 +8,8 @@ $data = $obj->get_index_wall(0);
 <html>
     <head>
         <?php require_once('inc/_head.php'); ?>
-        
-        
+
+
     </head>
     <body>
         <div id="container">
@@ -62,7 +62,7 @@ $data = $obj->get_index_wall(0);
             !function (window, undefined)
             {
                 var base = 1;
-                $(window).scroll(function ()
+                var debounced = _.debounce(function ()
                 {
                     var $BodyHeight = $(document).height();
                     var $ViewportHeight = $(window).height();
@@ -70,7 +70,6 @@ $data = $obj->get_index_wall(0);
                     if ($BodyHeight == ($ViewportHeight + $ScrollTop))
                     {
                         console.log("Here is bottom");
-
                         var data = {
                             func: "Site",
                             doit: "list_index",
@@ -80,10 +79,15 @@ $data = $obj->get_index_wall(0);
                         {
                             wall.appendBlock(ret);
                             refresh_country();
-                            base++;
+                            if (_.size(ret) > 0)
+                            {
+                                base++;
+                            }
                         }, 'html');
                     }
-                });
+                }, 250);
+                var $doc = $(document),
+                    $win = $(window).on("scroll", debounced);
             }(window);
         </script>
     </body>
