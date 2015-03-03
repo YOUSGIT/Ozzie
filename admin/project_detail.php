@@ -105,6 +105,10 @@ if ($data['id'])
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-lg-2">
+                                                <label>建立時間</label>
+                                                <input name="dates" readonly type="text" value="<?= $data['dates']; ?>" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group col-lg-2">
                                                 <label>開始時間</label>
                                                 <input name="sdates"  value="<?= $data['sdates']; ?>" readonly type="text" class="form-control" required/>
                                             </div>
@@ -171,7 +175,6 @@ if ($data['id'])
                                         <input type="hidden" value="Projects" name="func"/>
                                         <input type="hidden" value="3" name="target"/>
                                         <input type="hidden" value="" name="ajax_type"/>
-                                        <input type="hidden" name="dates" value="<?= $v['dates']; ?>"/>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -215,7 +218,7 @@ if ($data['id'])
                     var _FORM = $("form[data-target='form']");
                     set_datetimepicker($('input[name="sdates"]'));
                     set_datetimepicker($('input[name="edates"]'));
-                    set_datepicker($('input[name="dates"]'));
+                    set_datetimepicker($('input[name="dates"]'));
                     jQuery.extend(jQuery.validator.messages, {
                         required: "*必填欄位",
                     });
