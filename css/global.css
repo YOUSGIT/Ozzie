@@ -23,6 +23,8 @@ body {
 body.box {
     background: none;
     padding: 15px;
+    padding-bottom: 50px;
+    position: relative;
 }
 
 body.box #head{
@@ -244,7 +246,7 @@ body.box #info{
 
 .work {
     margin: auto;
-    display: block;
+    display: block;    
 }
 
 .work .photo {
@@ -303,50 +305,50 @@ body.box #info{
     width: 45%;
     font-family: Arial, Helvetica, sans-serif;
 }
-.work .share{
+.share{
     list-style: none;
     padding: 0;
     margin: 0;
     position: absolute;
     right:10px;
-    bottom: 10px;
+    bottom: -40px;
 }
-.work .share li{
+.share li{
     display: inline-block;
     *display: inline;
     zoom:1;
 
 }
-.work .share li a{
+.share li a{
     display: block;
     width:28px;
     height:28px;
 }
-.work .share li .facebook{
+.share li .facebook{
     background-image: url(../images/social_icon/fb.png);
 }
-.work .share li .facebook:hover{
+.share li .facebook:hover{
     background-image: url(../images/social_icon/fb2.png);
 }
 
-.work .share li .weibo{
+.share li .weibo{
     background-image: url(../images/social_icon/sin.png);
 }
-.work .share li .weibo:hover{
+.share li .weibo:hover{
     background-image: url(../images/social_icon/sin2.png);
 }
 
-.work .share li .pinterest{
+.share li .pinterest{
     background-image: url(../images/social_icon/pinterest.png);
 }
-.work .share li .pinterest:hover{
+.share li .pinterest:hover{
     background-image: url(../images/social_icon/pinterest2.png);
 }
 
-.work .share li .google{
+.share li .google{
     background-image: url(../images/social_icon/google.png);
 }
-.work .share li .google:hover{
+.share li .google:hover{
     background-image: url(../images/social_icon/google2.png);
 }
 
