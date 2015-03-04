@@ -43,7 +43,7 @@ $(function()
             closeEffect: 'fade',
             beforeShow: function()
             {
-                var color = ['rgba(255, 17, 175, 0.5)', 'rgba(46, 208, 59, 0.5)', 'rgba(239, 100, 46, 0.5)', 'rgba(255, 210, 58, 0.5)', 'rgba(0, 153, 206, 0.5)'];
+                var color = ['rgba(255, 17, 175, 0.8)', 'rgba(46, 208, 59, 0.8)', 'rgba(239, 100, 46, 0.8)', 'rgba(255, 210, 58, 0.8)', 'rgba(0, 153, 206, 0.8)'];
                 $(".fancybox-overlay").stop().animate(
                 {
                     backgroundColor: color[Math.floor(Math.random() * color.length)]
