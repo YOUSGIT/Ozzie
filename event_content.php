@@ -17,7 +17,7 @@ if ($data['id'])
         
         <meta property="og:title" content="<?= $data['title']; ?>" />        
         <meta property="og:url" content="http://<?= $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>" />
-        <meta property="og:image" content="http://<?= $_SERVER['HTTP_HOST'] .'/dev/'. str_replace(' ', '%20', $obj->get_pre_img_front($photo[0]['img'])) ?>" />
+        <meta property="og:image" content="http://<?= $_SERVER['HTTP_HOST'] .'/'. str_replace(' ', '%20', $obj->get_pre_img_front($photo[0]['img'])) ?>" />
         
         <script src="script/jquery.cycle2.min.js"></script>
     </head>
@@ -50,7 +50,7 @@ if ($data['id'])
                 <span id="next" class="next"><a href="#">> </a></span>
             </div>
             <div style="clear: both"></div>
-            <div class="content"><?= ($data['content']); ?></div>
+            <div class="content"><?= (stripslashes($data['content'])); ?></div>
         </div>
         <ul class="share">
                 <li><a class="facebook" href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href)) ));"></a></li>

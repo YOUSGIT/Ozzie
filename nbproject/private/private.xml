@@ -5,10 +5,14 @@
         <group>
             <file>file:/Z:/_Dev/Ozzie/event_content.php</file>
             <file>file:/Z:/_Dev/Ozzie/project_content.php</file>
+            <file>file:/Z:/_Dev/Ozzie/conf/db149218_ozzie.sql</file>
             <file>file:/Z:/_Dev/Ozzie/index.php</file>
             <file>file:/Z:/_Dev/Ozzie/css/global.css</file>
-            <file>file:/Z:/_Dev/Ozzie/about.php</file>
+            <file>file:/Z:/_Dev/Ozzie/conf/db.xml</file>
             <file>file:/Z:/_Dev/Ozzie/inc/_header.php</file>
+            <file>file:/Z:/_Dev/Ozzie/about.php</file>
+            <file>file:/Z:/_Dev/Ozzie/script/global.js</file>
+            <file>file:/Z:/_Dev/Ozzie/_init.php</file>
             <file>file:/Z:/_Dev/Ozzie/news_content.php</file>
         </group>
     </open-files>

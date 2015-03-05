@@ -34,7 +34,7 @@ define('PHOTO', CASENAME . '_photo');
 define('EVENTS', CASENAME . '_events');
 
 // deploy folder
-$root_f = '/dev/';
+$root_f = '/';
 
 $inPage = pathinfo($_SERVER["PHP_SELF"]);
 
@@ -54,7 +54,7 @@ define('IMAGES', $root . 'images/');
 define('WEB', 'http://ozzie-art.com' . $root_f);
 
 // configuration folder
-define("_CONF", _ROOT . "/conf/");
+define("_CONF", _ROOT . "/../conf/");
 
 // database information
 define("_DBXML", _CONF . "db.xml");
