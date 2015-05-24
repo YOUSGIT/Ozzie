@@ -46,7 +46,7 @@ $data = $obj->get_all_front(0);
                     var $BodyHeight = $(document).height();
                     var $ViewportHeight = $(window).height();
                     var $ScrollTop = $(this).scrollTop();
-                    if ($BodyHeight == ($ViewportHeight + $ScrollTop))
+                    if ($BodyHeight <= ($ViewportHeight + $ScrollTop))
                     {
                         console.log("Here is bottom");
                         var data = {

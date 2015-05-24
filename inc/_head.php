@@ -1,7 +1,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="Keywords" content="Curating,Content Design,Visual Communication,Exhibition,Space Design,Art Direction,Art education,Art cohesive design,Space cohesive design,Feexpos,One day Museum,aaaid,LearNext,策展,內容設計,視覺傳達設計,視覺溝通,展覽,空間設計,藝術指導,藝術教育,不太乖教育節,一日美術館,氛圍設計,人內教育">
 <meta name="Description" content="Curating, Content Design, Visual Communication, Exhibition/Space Design, Art Direction, Art education, Art/Space cohesive design" />
-<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0" />-->
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
 
 
 <title>Ozzie Art Consultants 奧茲藝術顧問</title>

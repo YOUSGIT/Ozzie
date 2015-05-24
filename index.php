@@ -66,9 +66,13 @@ $data = $obj->get_index_wall(0);
                 {
                     var $BodyHeight = $(document).height();
                     var $ViewportHeight = $(window).height();
-                    var $ScrollTop = $(this).scrollTop();
-                    if ($BodyHeight == ($ViewportHeight + $ScrollTop))
+                    var $ScrollTop = $(window).scrollTop();
+
+                    
+
+                    if ($BodyHeight <= ($ViewportHeight + $ScrollTop))
                     {
+                        
                         console.log("Here is bottom");
                         var data = {
                             func: "Site",

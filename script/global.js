@@ -2,6 +2,7 @@ $(function()
 {
     //FreeWall
     var wall = new freewall(".wall");
+    
     wall.reset(
     {
         selector: '.brick',
